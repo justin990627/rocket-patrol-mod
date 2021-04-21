@@ -8,16 +8,22 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.image('starfield', './assets/starfield.png');
+        this.load.image('spacemenu', './assets/spacebackground.jpeg');
       }
 
     create() {
+      //place tile sprite
+      this.starfield = this.add.tileSprite(0, 0, 640, 480, 'spacemenu').setOrigin(0, 0);
+      
+
         //menu text configuration
         let menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'right',
+            fontFamily: 'Revalia',
+            fontSize: '80px',
+            backgroundColor: '#b0efeb',
+            color: '#FFA500',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
@@ -26,11 +32,14 @@ class Menu extends Phaser.Scene {
         }
 
         //show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'Use ← and → to move & (F) to fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#00FF00';
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding-50, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
+        menuConfig.fontSize = '24px';
+        menuConfig.backgroundColor = '#fdbaf8';
         menuConfig.color = '#000';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2+40, 'Use ← and → to move & (F) to fire', menuConfig).setOrigin(0.5);
+        menuConfig.backgroundColor = '#edffa9';
+        menuConfig.color = '#000';
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding+40, 'Press ← for EASY / → for HARD', menuConfig).setOrigin(0.5);
         
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -38,10 +47,14 @@ class Menu extends Phaser.Scene {
         }
 
         update() {
+          this.starfield.tilePositionX -= 2;
+
+
             if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
               // easy mode
               game.settings = {
                 spaceshipSpeed: 2,
+                smallshipSpeed: 8,
                 gameTimer: 5000    
               }
               this.sound.play('sfx_select');
