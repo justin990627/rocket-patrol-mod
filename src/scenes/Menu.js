@@ -12,6 +12,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_explosion3', './assets/explosion3.wav');
         this.load.audio('sfx_explosion4', './assets/explosion4.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.audio('sfx_background', './assets/Chrono.mp3');
         this.load.image('starfield', './assets/starfield.png');
         this.load.image('spacemenu', './assets/spacebackground.jpeg');
       }
@@ -20,7 +21,9 @@ class Menu extends Phaser.Scene {
       //place tile sprite
       this.starfield = this.add.tileSprite(0, 0, 640, 480, 'spacemenu').setOrigin(0, 0);
       
-
+      let backgroundMusic = this.sound.add('sfx_background');
+      backgroundMusic.play();
+      
         //menu text configuration
         let menuConfig = {
             fontFamily: 'Revalia',
@@ -52,7 +55,6 @@ class Menu extends Phaser.Scene {
 
         update() {
           this.starfield.tilePositionX -= 2;
-
 
             if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
               // easy mode
