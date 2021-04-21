@@ -17,6 +17,9 @@ let keyF, keyR, keyLEFT, keyRIGHT;
 
 /*
 What I have change:
+Randomize each spaceship's movement direction at the start of each play (5)
+Create a new scrolling tile sprite for the background (5)
+
 Create 4 new explosion SFX and randomize which one plays on impact (10)
 
 Replace the UI borders with new artwork (10)
