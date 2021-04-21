@@ -19,6 +19,7 @@ let keyF, keyR, keyLEFT, keyRIGHT;
 What I have change:
 Create 4 new explosion SFX and randomize which one plays on impact (10)
 
+Replace the UI borders with new artwork (10)
 Create a new title screen (e.g., new artwork, typography, layout) (10)
 Create a new spaceship type (w/ new artwork) that's smaller, moves faster, and is worth more points (20)
 Create new artwork for all of the in-game assets (rocket, spaceships, explosion) (20) 
