@@ -11,6 +11,9 @@ class Play extends Phaser.Scene {
         this.load.image('starfield', './assets/starfield.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        //this.load.spritesheet('explosion1', './assets/explosion1.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        //this.load.spritesheet('explosion2', './assets/explosion2.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        //this.load.spritesheet('explosion3', './assets/explosion3.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
 
     }
 
@@ -47,6 +50,21 @@ class Play extends Phaser.Scene {
         this.anims.create({
         key: 'explode',
         frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
+        frameRate: 30
+        });
+        this.anims.create({
+        key: 'explode1',
+        frames: this.anims.generateFrameNumbers('explosion1', { start: 0, end: 9, first: 0}),
+        frameRate: 30
+        });
+        this.anims.create({
+        key: 'explode2',
+        frames: this.anims.generateFrameNumbers('explosion2', { start: 0, end: 9, first: 0}),
+        frameRate: 30
+        });
+        this.anims.create({
+        key: 'explode3',
+        frames: this.anims.generateFrameNumbers('explosion3', { start: 0, end: 9, first: 0}),
         frameRate: 30
         });
 
@@ -113,7 +131,7 @@ class Play extends Phaser.Scene {
             this.shipExplode(this.ship1);
         }
 
-        //blue ship extra point
+        //blue ship collision
         if (this.checkCollision(this.p1Rocket, this.shipsmall)) {
             this.p1Rocket.reset();
             this.shipExplode(this.shipsmall);
@@ -148,6 +166,7 @@ class Play extends Phaser.Scene {
         // score add and repaint
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;    
-        this.sound.play('sfx_explosion');      
+        this.sound.play(Phaser.Math.RND.pick(['sfx_explosion','sfx_explosion1','sfx_explosion2','sfx_explosion3','sfx_explosion4']));
+
       }
   }
