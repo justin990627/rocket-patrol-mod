@@ -21,6 +21,7 @@ class Menu extends Phaser.Scene {
       //place tile sprite
       this.starfield = this.add.tileSprite(0, 0, 640, 480, 'spacemenu').setOrigin(0, 0);
       
+      //add background Music
       let backgroundMusic = this.sound.add('sfx_background');
       backgroundMusic.play();
       
