@@ -13,3 +13,9 @@ let borderPadding = borderUISize / 3;
 
 // reserve keyboard vars
 let keyF, keyR, keyLEFT, keyRIGHT;
+
+
+/*
+What I have change:
+Create new artwork for all of the in-game assets (rocket, spaceships, explosion) (20) 
+*/
