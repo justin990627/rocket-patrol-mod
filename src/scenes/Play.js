@@ -26,11 +26,11 @@ class Play extends Phaser.Scene {
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket');
 
         // add spaceships (x3)
-        this.ship1 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
-        this.ship2 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
-        this.ship3 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
+        this.ship1 = new Spaceship(this, Phaser.Math.Between(game.config.width + borderUISize*6, 100), borderUISize*5, 'spaceship', 0, 30).setOrigin(0, 0);
+        this.ship2 = new Spaceship(this, Phaser.Math.Between(game.config.width + borderUISize*3, 100), borderUISize*6 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
+        this.ship3 = new Spaceship(this, Phaser.Math.Between(game.config.width, 100), borderUISize*7 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
         //extro point ship
-        this.shipsmall = new Smallship(this, game.config.width + borderUISize*12, borderUISize*4, 'spaceshipsmall', 0, 50).setOrigin(0,0);
+        this.shipsmall = new Smallship(this, Phaser.Math.Between(game.config.width + borderUISize*12, 100), borderUISize*4, 'spaceshipsmall', 0, 50).setOrigin(0,0);
 
         //green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
