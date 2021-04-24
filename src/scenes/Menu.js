@@ -23,8 +23,11 @@ class Menu extends Phaser.Scene {
       
       //add background Music
       let backgroundMusic = this.sound.add('sfx_background');
-      backgroundMusic.play();
+      ////////////backgroundMusic.play({loop:true})
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
+
+
         //menu text configuration
         let menuConfig = {
             fontFamily: 'Revalia',
@@ -38,6 +41,8 @@ class Menu extends Phaser.Scene {
             },
             fixedWidth: 0
         }
+
+
 
         //show menu text
         this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding-50, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
@@ -62,7 +67,9 @@ class Menu extends Phaser.Scene {
               game.settings = {
                 spaceshipSpeed: 2,
                 smallshipSpeed: 8,
-                gameTimer: 5000    
+                gameTimer: 5000,
+                highScore: 0
+   
               }
               this.sound.play('sfx_select');
               this.scene.start('playScene');    
@@ -72,10 +79,13 @@ class Menu extends Phaser.Scene {
               game.settings = {
                 spaceshipSpeed: 5,
                 smallshipSpeed: 8,
-                gameTimer: 10000
+                gameTimer: 10000,
+                highScore: 0
+
               }
               this.sound.play('sfx_select');
               this.scene.start('playScene');    
             }
+
           }
   }

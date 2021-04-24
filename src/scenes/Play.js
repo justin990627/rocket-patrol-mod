@@ -16,6 +16,8 @@ class Play extends Phaser.Scene {
         //this.load.spritesheet('explosion3', './assets/explosion3.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
 
         this.load.image('scifi', './assets/scifi.png');
+        this.load.audio('sfx_background', './assets/Chrono.mp3');
+
     }
 
     create() {
@@ -74,9 +76,11 @@ class Play extends Phaser.Scene {
         */
 
         // initialize score
-        this.p1Score = 0;
+        this.p1Score = 0;        
+    
+    
 
-        // display score
+        // display score config
         let scoreConfig = {
         fontFamily: 'Courier',
         fontSize: '28px',
@@ -89,7 +93,27 @@ class Play extends Phaser.Scene {
         },
         fixedWidth: 100
     }
+    //display score
     this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
+
+    //display highscore config
+    let highscoreConfig = {
+        fontFamily: 'Courier',
+        fontSize: '28px',
+        backgroundColor: '#F3B141',
+        color: '#843605',
+        align: 'right',
+        padding: {
+            top: 5,
+            bottom: 5,
+        },
+        fixedWidth: 250
+    }
+
+    this.highScore = 0;
+    //display high score
+    console.log(game.settings.highScore);
+    this.scoreRight = this.add.text(350, borderUISize + borderPadding*2, 'High Score: ' + game.settings.highScore, highscoreConfig);
 
 
     // GAME OVER flag
@@ -100,18 +124,26 @@ class Play extends Phaser.Scene {
     this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
         this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
+        
+        //update high score
+        if(game.settings.highScore<this.p1Score){
+            game.settings.highScore = this.p1Score;
+            this.scoreRight.text = 'High Score: ' + game.settings.highScore;
+        }
+        
+        
         this.gameOver = true;
-
     }, null, this);
 }
-    update(){
+    update(time, delta){
+
 
         // check key input for restart
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
         }
             if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-            this.scene.start("menuScene");
+               this.scene.start("menuScene");
         }
 
         this.starfield.tilePositionX -= 4;
@@ -142,10 +174,11 @@ class Play extends Phaser.Scene {
             this.p1Rocket.reset();
             this.shipExplode(this.shipsmall);
         }
-
-
-        
     }
+
+
+
+
     checkCollision(rocket, ship) {
         // simple AABB checking
         if (rocket.x < ship.x + ship.width && 
@@ -171,7 +204,9 @@ class Play extends Phaser.Scene {
         }); 
         // score add and repaint
         this.p1Score += ship.points;
-        this.scoreLeft.text = this.p1Score;    
+        this.scoreLeft.text = this.p1Score;
+        
+        //play 4 random explosion sound effect
         this.sound.play(Phaser.Math.RND.pick(['sfx_explosion','sfx_explosion1','sfx_explosion2','sfx_explosion3','sfx_explosion4']));
 
       }

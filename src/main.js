@@ -2,7 +2,7 @@ let config = {
   type: Phaser.AUTO,
   width: 640,
   height: 480,
-  scene:   [ Menu, Play ]
+  scene:   [ Menu, Play ],
 }
 
 let game = new Phaser.Game(config);
@@ -15,8 +15,12 @@ let borderPadding = borderUISize / 3;
 let keyF, keyR, keyLEFT, keyRIGHT;
 
 
+
+
 /*
 What I have change:
+
+Track a high score that persists across scenes and display it in the UI (5)
 Randomize each spaceship's movement direction at the start of each play (5)
 Create a new scrolling tile sprite for the background (5)
 Add your own (copyright-free) background music to the Play scene (5)
