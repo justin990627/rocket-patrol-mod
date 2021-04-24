@@ -23,9 +23,8 @@ class Menu extends Phaser.Scene {
       
       //add background Music
       let backgroundMusic = this.sound.add('sfx_background');
-      ////////////backgroundMusic.play({loop:true})
+      backgroundMusic.play({loop:true})
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      
 
 
         //menu text configuration
