@@ -62,11 +62,11 @@ class Menu extends Phaser.Scene {
           this.starfield.tilePositionX -= 2;
 
             if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-              // easy mode
+              // easy mode 60 second
               game.settings = {
                 spaceshipSpeed: 2,
                 smallshipSpeed: 8,
-                gameTimer: 5000,
+                gameTimer: 60000,
                 highScore: 0
    
               }
@@ -74,11 +74,11 @@ class Menu extends Phaser.Scene {
               this.scene.start('playScene');    
             }
             if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
-              // hard mode
+              // hard mode 45 second
               game.settings = {
                 spaceshipSpeed: 5,
                 smallshipSpeed: 8,
-                gameTimer: 10000,
+                gameTimer: 45000,
                 highScore: 0
 
               }
